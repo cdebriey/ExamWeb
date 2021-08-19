@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formOffre 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+{{ form_start(formOffre)}}
+{{ form_widget (formOffre) }}
+    <button type="submit" class="btn btn-success">Faire l'offre</button>
+{{ form_end(formOffre) }}
+
+{% endblock %}

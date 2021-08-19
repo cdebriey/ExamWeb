@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <voiture>
+        <h2>{{ voiture.Marque }} {{voiture.Modele }}</h2>
+        <div class="metadata">Ajouté le {{ voiture.MiseEnVente | date('d/m/Y') }}</div>
+        <div class="content">
+            <img src="{{ voiture.image }}" WIDTH=300 alt=""><br>
+            <h4>{{ voiture.PrixDemande }} &#8364</h4>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Année de mise en circulation : </td>
+                        <td>{{ voiture.AnneeDeMiseEnCirculation }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cylindrée (en cc) : </td>
+                        <td>{{ voiture.Cylindree }}</td>
+                    </tr>
+                    <tr>
+                        <td>Puissance (en CV) : </td>
+                        <td>{{ voiture.Puissance }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kilometrage : </td>
+                        <td>{{ voiture.Kilometrage }}</td>
+                    </tr>
+                </tbody>
+            </table><br>
+            <h5>Commentaires du vendeur : </h5>
+            <p>"{{ voiture.description | raw }}"</p><br>
+        </div> 
+        <a href="{{ path('car_offre', {'id': voiture.id}) }}" class="btn btn-success">Faire une offre</a>
+        <a href="{{ path('car_delete', {'id' : voiture.id}) }}" class="btn btn-success">Supprimer</a><br><br>
+
+        <br>
+        <br>
+
+    </voiture>
+
+    <section id="offres">
+        {% for offre in voiture.offres %}
+        <div class="offre"> 
+            <h3>Offre de {{offre.Prenom}} {{ offre.Nom }}</h3>
+            <li>Prix offert : {{ offre.PrixOffert }} &#8364</li>
+            <li>Adresse e-mail : {{ offre.AdresseEmail }}</li>
+            <br>
+        </div>
+        {% endfor %}
+
+    </section>
+
+    
+
+{%endblock%}

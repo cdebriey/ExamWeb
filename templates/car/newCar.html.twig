@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formCar 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <section class="voiture">
+    <voiture>
+    <h1>Formulaire de vente de voiture</h1>
+    
+    {{ form_start(formCar) }}
+
+    {{ form_row(formCar.Marque,{'label':"Marque",'attr':{'placeholder':"exemple : Renault"}}) }}
+    {{ form_row(formCar.Modele,{'label':"Modèle",'attr':{'placeholder':"exemple : Clio"}}) }}
+    {{ form_row(formCar.AnneeDeMiseEnCirculation,{'label':"Année de mise en circulation",'attr':{'placeholder':"exemple : 2015"}}) }}
+    {{ form_row(formCar.PrixDemande,{'label':"Prix demandé (en euro) ",'attr':{'placeholder':"exemple : 5000"}}) }}
+    {{ form_row(formCar.Cylindree,{'label':"Cylindrée (en cc)",'attr':{'placeholder':"exemple : 1600"}}) }}
+    {{ form_row(formCar.Puissance,{'label':"Puissance (en cv)",'attr':{'placeholder':"exemple : 110"}}) }}
+    {{ form_row(formCar.Kilometrage,{'label':"Kilometrage (en km)",'attr':{'placeholder':"exemple : 50.000"}}) }}
+    {{ form_row(formCar.Image,{'label':"Image",'attr':{'placeholder':"URL de l'image"}}) }}
+    {{ form_row(formCar.Description,{'label':"Commentaires",'attr':{'placeholder':"Avez-vous des remarques à propos de votre voiture ?"}}) }}
+
+    {% if editMode %}
+        <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+    {% else %}
+        <button type="submit" class="btn btn-success">Mettre en vente</button>
+    {% endif %}
+    
+    {{ form_end(formCar) }}
+    </voiture>
+    </section>
+
+{% endblock %}
