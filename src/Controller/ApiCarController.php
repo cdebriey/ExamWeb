@@ -82,7 +82,7 @@ class ApiCarController extends AbstractController
         $em->remove($toDelete);
         $em->flush();
 
-        $message = "La voiture a bien été retirée de la vente.";
+        $message = "La belle voiture a bien été retirée de la vente.";
 
         $response = new JsonResponse(['message' => $message]);
         $response->headers->set('Content-Type', 'application/json');
