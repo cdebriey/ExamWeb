@@ -11,10 +11,10 @@
     <div class="content">
         <img src="{{ voiture.image }}" WIDTH=300 alt=""><br>
         {{ voiture.Kilometrage }} km<br>
-        <h4>{{ voiture.PrixDemande }} &#8364</h4><br>
+        <h4>{{ voiture.PrixDemande }} &#8364</h4>
         <a href="{{ path('car_more', {'id': voiture.id}) }}" class="btn btn-success">Plus d'info</a><br>
-
-    </div>  
+    </div> 
+    <br> 
 </voiture>  
 </section>
 {% endfor %} 

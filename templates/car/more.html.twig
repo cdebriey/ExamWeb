@@ -31,6 +31,7 @@
             <p>"{{ voiture.description | raw }}"</p><br>
         </div> 
         <a href="{{ path('car_offre', {'id': voiture.id}) }}" class="btn btn-success">Faire une offre</a>
+        <a href="{{ path('car_edit', {'id' : voiture.id}) }}" class="btn btn-success">Modifier</a>
         <a href="{{ path('car_delete', {'id' : voiture.id}) }}" class="btn btn-success">Supprimer</a><br><br>
 
         <br>

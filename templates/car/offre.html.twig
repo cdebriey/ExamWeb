@@ -3,7 +3,9 @@
 {% form_theme formOffre 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-
+<voiture>
+<h2>Offre pour la {{ voiture.Marque }} {{voiture.Modele }} de {{ voiture.AnneeDeMiseEnCirculation }}</h2>
+</voiture>
 {{ form_start(formOffre)}}
 {{ form_widget (formOffre) }}
     <button type="submit" class="btn btn-success">Faire l'offre</button>

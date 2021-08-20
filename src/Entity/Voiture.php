@@ -101,7 +101,6 @@ class Voiture
     private $Puissance;
 
 
-
     public function __construct()
     {
         $this->offres = new ArrayCollection();
@@ -257,6 +256,18 @@ class Voiture
     public function setPuissance(?int $Puissance): self
     {
         $this->Puissance = $Puissance;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

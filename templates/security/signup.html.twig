@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2>Inscription</h2>
+
+{{ form_start(formUser) }}
+{{ form_row(formUser.Nom, {'attr':{'placeholder':'exemple: Durant'}}) }}
+{{ form_row(formUser.Prenom, {'label':'Prénom','attr':{'placeholder':'exemple: Jean'}}) }}
+{{ form_row(formUser.email, {'label':'Adresse Email','attr':{'placeholder':'exemple: jean.durant@gmail.com'}}) }}
+{{ form_row(formUser.password, {'label':'Mot de passe','attr':{'placeholder':'Mot de passe secret'}}) }}
+
+    <button type="submit" class="btn btn-success">S'enregistrer</button>
+{{ form_end(formUser) }}
+
+{% endblock %}

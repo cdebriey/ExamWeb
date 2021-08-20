@@ -92,7 +92,10 @@ class CarController extends AbstractController
 
    public function formOffre($id, Offre $offre = null, Request $request, ManagerRegistry $manager) {
 
-    $voiture = $this->getDoctrine()->getRepository(Voiture::class)->find($id);
+       $repo = $this->getDoctrine()->getRepository(Voiture::class);
+
+       $voiture = $repo->find($id);
+
        $offre = new Offre();
 
        $formOffre = $this->createForm(OffreType::class, $offre);
@@ -114,7 +117,8 @@ class CarController extends AbstractController
        }
 
        return $this->render('car/offre.html.twig',[
-           'formOffre' => $formOffre->createView()
+           'formOffre' => $formOffre->createView(),
+           'voiture' => $voiture
        ]);
    }
     
