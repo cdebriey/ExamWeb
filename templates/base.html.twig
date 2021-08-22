@@ -31,6 +31,13 @@
           <a class="nav-link" href="{{ path('car_newCar') }}">Vendre une voiture</a>
         </li>
       </ul>
+      {% for label, messages in app.flashes %}
+        {% for message in messages %}
+          <div class="flash-{{ label }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endfor %}
     </div>
   </div>
 </nav>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultats recherche
+{% endblock %}
+
+{% set counter = 0 %}
+
+
+{% block body %}
+{% for voiture in voitures %}
+    {% if voitureResearch.Marque|lower in voiture.Marque|lower and voitureResearch.Modele|lower in voiture.Modele|lower %}
+    {% set counter = counter + 1 %}
+    {% endif %}
+{% endfor %}
+
+    {% if counter > 1 %}
+    <br>
+        <h3>{{ counter }} résultats pour "{{ voitureResearch.Marque }} {{ voitureResearch.Modele }}"</h3>
+        <br>
+        <a href="{{ path('search') }}" class="btn btn-success">Relancer la recherche</a>
+    <br>
+    {% elseif counter == 1 %}
+        <br>
+        <h3>{{ counter }} résultat pour "{{ voitureResearch.Marque }} {{ voitureResearch.Modele }}"</h3>
+        <br>
+        <a href="{{ path('search') }}" class="btn btn-success">Relancer la recherche</a>
+    <br>
+    {% else %}
+    <br>
+        <h3>{{ counter }} résultat pour "{{ voitureResearch.Marque }} {{ voitureResearch.Modele }}"</h3>
+        <br>
+        <p>Désolé ! Veuillez réessayer votre recherche en cliquant sur le bouton ci-dessous :</p>
+        <br>
+        <a href="{{ path('search') }}" class="btn btn-success">Relancer la recherche</a>
+    <br>
+    {% endif %}
+
+	{% for voiture in voitures %}
+    {% if voitureResearch.Marque|lower in voiture.Marque|lower and voitureResearch.Modele|lower in voiture.Modele|lower %}
+    {% set counter = counter + 1 %}
+    <br>
+		<voiture>
+            <h3>{{ voiture.Marque }} {{ voiture.Modele }} {{ voiture.AnneeDeMiseEnCirculation }} </h2>
+            <div class="metadata">Ajouté le {{ voiture.MiseEnVente | date('d/m/Y') }}</div>
+            <div class="content">
+                <img src="{{ voiture.image }}" WIDTH=300 alt=""><br>
+                {{ voiture.Kilometrage }} km<br>
+                <h4>{{ voiture.PrixDemande }} &#8364</h4>
+                <a href="{{ path('car_more', {'id': voiture.id}) }}" class="btn btn-success">Plus d'info</a><br>
+            </div> 
+            <br> 
+        </voiture> 
+	<br>
+    {% endif %}
+	{% endfor %}
+{% endblock %}

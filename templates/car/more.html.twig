@@ -32,7 +32,7 @@
         </div> 
         <a href="{{ path('car_offre', {'id': voiture.id}) }}" class="btn btn-success">Faire une offre</a>
         <a href="{{ path('car_edit', {'id' : voiture.id}) }}" class="btn btn-success">Modifier</a>
-        <a href="{{ path('car_delete', {'id' : voiture.id}) }}" class="btn btn-success">Supprimer</a><br><br>
+        <a href="{{ path('car_delete', {'id' : voiture.id}) }}" class="btn btn-danger">Supprimer</a><br><br>
 
         <br>
         <br>
@@ -45,6 +45,7 @@
             <h3>Offre de {{offre.Prenom}} {{ offre.Nom }}</h3>
             <li>Prix offert : {{ offre.PrixOffert }} &#8364</li>
             <li>Adresse e-mail : {{ offre.AdresseEmail }}</li>
+            <a href="{{ path('car_deleteOffre', {'id' : offre.id}) }}" class="btn btn-danger">Supprimer</a><br><br>
             <br>
         </div>
         {% endfor %}

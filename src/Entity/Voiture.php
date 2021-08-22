@@ -33,14 +33,12 @@ class Voiture
     /**
      * @ORM\Column(type="integer")
      * @Groups("voiture:read")
-     * @Assert\NotBlank
      */
     private $PrixDemande;
     
     /**
      * @ORM\Column(type="string", length=1000)
      * @Groups("voiture:read")
-     * @Assert\NotBlank
      */
     private $Image;
     
@@ -49,14 +47,12 @@ class Voiture
     /**
      * @ORM\Column(type="integer")
      * @Groups("voiture:read")
-     * @Assert\NotBlank
      */
     private $Kilometrage;
     
     /**
      * @ORM\Column(type="integer")
      * @Groups("voiture:read")
-     * @Assert\NotBlank
      */
     private $Cylindree;
 
@@ -65,14 +61,12 @@ class Voiture
     /**
      * @ORM\Column(type="text")
      * @Groups("voiture:read")
-     * @Assert\NotBlank
      */
     private $Description;
     
     /**
      * @ORM\Column(type="datetime")
      * @Groups("voiture:read")
-     * @Assert\NotBlank
      */
     private $MiseEnVente;
 
@@ -91,6 +85,7 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $Modele;
 

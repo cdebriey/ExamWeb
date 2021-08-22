@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formResearch 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+	<br>
+	<h3>Quelle voiture recherchez-vous ? :</h3><br>
+
+    {{ form_start(formResearch) }}
+    {{ form_row(formResearch.Marque, {'label':'Marque de la voiture :', 'attr':{'placeholder':"exemple : Renault"}})}}
+    {{ form_row(formResearch.Modele, {'label':'Modèle de la voiture :', 'attr':{'placeholder':"exemple : Clio"}})}}
+    {{ form_row(formResearch.save, {'label': 'Rechercher'}) }}
+    {{ form_end(formResearch) }}
+{% endblock %}

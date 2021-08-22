@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Voiture;
 use App\Entity\Offre;
 use App\Form\CarType;
+use App\Entity\Voiture;
 use App\Form\OffreType;
+use App\Form\SearchType;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class CarController extends AbstractController
@@ -50,7 +51,6 @@ class CarController extends AbstractController
             $voiture = new Voiture();
         }
 
-
         $formCar = $this->createForm(CarType::class, $voiture);
 
         $formCar->handleRequest($request);
@@ -59,7 +59,12 @@ class CarController extends AbstractController
 
             if (!$voiture->getId()){
                 $voiture->setMiseEnVente(new \Datetime());
+                $this->addFlash(
+                    'notice',
+                    'Votre voiture a bien été mise en vente!'
+                );
             }
+            
             $manager->getManager()->persist($voiture);
             $manager->getManager()->flush();
             
@@ -83,7 +88,35 @@ class CarController extends AbstractController
         $sup->remove($voiture);
         $sup->flush();
 
-        return new Response('Voiture retirée de la vente.');
+        $this->addFlash(
+            'notice',
+            'La voiture a bien été retirée de la vente!'
+        );
+
+        //return new Response('Voiture retirée de la vente.')
+        return $this->redirectToRoute('car');
+    }
+
+    /**
+     * @Route("/car/{id}/deleteOffre", name="car_deleteOffre")
+     * 
+     * @return Response
+     */
+
+    public function deleteOffre($id, Offre $offre){
+        $repo = $this->getDoctrine()->getRepository(Offre::class);
+        $voiture = $repo->find($id);
+        $sup = $this->getDoctrine()->getManager();
+        $sup->remove($offre);
+        $sup->flush();
+
+        $this->addFlash(
+            'notice',
+            'L\'offre a bien été retirée !'
+        );
+
+        //return new Response('Voiture retirée de la vente.')
+        return $this->redirectToRoute('car');
     }
 
     /**
@@ -112,6 +145,11 @@ class CarController extends AbstractController
            }*/
            $manager->getManager()->persist($offre);
            $manager->getManager()->flush();
+
+           $this->addFlash(
+            'notice',
+            'Votre offre a bien été enregistrée!'
+            );
            
            return $this->redirectToRoute('car');
        }
@@ -134,6 +172,27 @@ class CarController extends AbstractController
             'voiture' => $voiture
         ]);
     }
+    /**
+    * @Route("/search",name="search")
+    */
 
+    public function search(Request $request) {
+
+    $repo = $this ->getDoctrine()->getRepository(Voiture::class);
+    $voitures = $repo -> findAll();
+    $form = $this->createForm(SearchType::class);
+
+    $form ->handleRequest($request);
+
+    if($form->isSubmitted() && $form->isValid()) {
+        return $this->render('car/search_result.html.twig', [
+            'voitureResearch' => $request->request->get('search'), 
+            'voitures' => $voitures
+            ]);
+        }
+    return $this ->render('car/search_form.html.twig',[
+        'formResearch' => $form->createView()
+        ]);
+    }
 
 }

@@ -3,9 +3,12 @@
 {% block title %}Hello CarController!{% endblock %}
 
 {% block body %}
+<br>
+<a href="{{ path('search') }}" class="btn btn-info">Rechercher une voiture </a><br>
 <section class="voiture">
 {% for voiture in voitures %}
 <voiture>
+    <br>
     <h3>{{ voiture.Marque }} {{ voiture.Modele }} {{ voiture.AnneeDeMiseEnCirculation }} </h2>
     <div class="metadata">Ajouté le {{ voiture.MiseEnVente | date('d/m/Y') }}</div>
     <div class="content">
