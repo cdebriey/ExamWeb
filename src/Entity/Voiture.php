@@ -31,28 +31,32 @@ class Voiture
     
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $PrixDemande;
     
     /**
      * @ORM\Column(type="string", length=1000)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $Image;
     
     
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $Kilometrage;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $Cylindree;
 
@@ -61,12 +65,14 @@ class Voiture
     /**
      * @ORM\Column(type="text")
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $Description;
     
     /**
      * @ORM\Column(type="datetime")
      * @Groups("voiture:read")
+     *
      */
     private $MiseEnVente;
 
@@ -79,6 +85,7 @@ class Voiture
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $AnneeDeMiseEnCirculation;
 
@@ -92,6 +99,7 @@ class Voiture
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups("voiture:read")
+     * @Assert\NotBlank
      */
     private $Puissance;
 

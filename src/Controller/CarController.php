@@ -17,8 +17,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CarController extends AbstractController
 {
+
+    // fonction pour afficher toutes les voitures enregistrées dans la base de données. 
     /**
      * @Route("/car", name="car")
+     * @Route("/", name="home")
      */
     public function index(): Response
     {
@@ -34,21 +37,7 @@ class CarController extends AbstractController
 
     
 
-    /**
-     * @Route("/", name="home")
-     */
-    public function home(): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Voiture::class);
-
-        $voitures = $repo->findAll();    
-
-        return $this->render('car/index.html.twig', [
-            'controller_name' => 'CarController',
-            'voitures' => $voitures,
-        ]);
-    }
-
+    //fonction pour afficher le formulaire CarType et enregistrer les inputs des utilisateurs
     /**
      * @Route("/car/new", name="car_newCar")
      * @Route("/car/{id}/edit", name="car_edit")
@@ -91,6 +80,10 @@ class CarController extends AbstractController
         ]);
     }
 
+
+    // fonction permettant de supprimer une annonce de voiture.
+    // L'option "cascade={"remove"}" pour l'attribut 'offre' de l'entité 'voiture' permet de supprimer les offres 
+    // relatives à la voiture qu'on souhaite supprimer.
     /**
      * @Route("/car/{id}/delete", name="car_delete")
      * 
@@ -111,6 +104,8 @@ class CarController extends AbstractController
         return $this->redirectToRoute('car');
     }
 
+
+    // fonction permettant de supprimer une offre.
     /**
      * @Route("/car/{id}/deleteOffre", name="car_deleteOffre")
      * 
@@ -133,6 +128,8 @@ class CarController extends AbstractController
         return $this->redirectToRoute('car');
     }
 
+    //fonction pour afficher le formulaire formType et enregistrer les inputs des utilisateurs. 
+    //L'offre doit correspondre à une voiture, c'est pourquoi VoitureRepository est également invoqué.
     /**
     * @Route ("/car/{id}/offre", name="car_offre")
     */
@@ -169,7 +166,9 @@ class CarController extends AbstractController
            'voiture' => $voiture
        ]);
    }
-    
+
+
+    // fonction pour afficher une annonce spécifique en détail. 
     /**
      * @Route ("/car/{id}", name="car_more")
      */
@@ -182,6 +181,8 @@ class CarController extends AbstractController
             'voiture' => $voiture
         ]);
     }
+
+    //fonction permettant de chercher une voiture en remplissant le formulaire SearchType.
     /**
     * @Route("/search",name="search")
     */
