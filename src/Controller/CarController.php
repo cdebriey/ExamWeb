@@ -32,12 +32,20 @@ class CarController extends AbstractController
         ]);
     }
 
+    
+
     /**
      * @Route("/", name="home")
      */
-    public function home() {
-        return $this->render("car/home.html.twig", [
-            'nom_complet' => "Porsche 911 2018"
+    public function home(): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Voiture::class);
+
+        $voitures = $repo->findAll();    
+
+        return $this->render('car/index.html.twig', [
+            'controller_name' => 'CarController',
+            'voitures' => $voitures,
         ]);
     }
 
@@ -62,6 +70,12 @@ class CarController extends AbstractController
                 $this->addFlash(
                     'notice',
                     'Votre voiture a bien été mise en vente!'
+                );
+            }
+            else{
+                $this->addFlash(
+                    'notice',
+                    'Les changements ont bien été enregistrés !'
                 );
             }
             
@@ -137,12 +151,8 @@ class CarController extends AbstractController
 
        if($formOffre->isSubmitted() && $formOffre->isValid()) {
 
-            $offre->setCreatedAt(new \DateTimeImmutable());
+            $offre->setCreatedAt(new \DateTime());
             $offre->setVoiture($voiture);
-
-           /*if (!$offre->getId()){
-               $offre->CreatedAt(new \Datetime());
-           }*/
            $manager->getManager()->persist($offre);
            $manager->getManager()->flush();
 

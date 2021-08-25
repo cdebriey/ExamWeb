@@ -106,12 +106,12 @@ class Offre
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->CreatedAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $CreatedAt): self
+    public function setCreatedAt(?\DateTime $CreatedAt): self
     {
         $this->CreatedAt = $CreatedAt;
 
@@ -129,7 +129,7 @@ class Offre
 
         return $this;
     }
-
+/*
     public function getUser(): ?User
     {
         return $this->user;
@@ -141,4 +141,5 @@ class Offre
 
         return $this;
     }
+    */
 }

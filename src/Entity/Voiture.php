@@ -72,7 +72,7 @@ class Voiture
 
     /**
      * @ORM\OneToMany(targetEntity=Offre::class, mappedBy="voiture", cascade={"remove"})
-     * @Groups("voiture:read")
+     * 
      */
     private $offres;
 
@@ -254,7 +254,7 @@ class Voiture
 
         return $this;
     }
-
+/*
     public function getUser(): ?User
     {
         return $this->user;
@@ -266,4 +266,5 @@ class Voiture
 
         return $this;
     }
+*/
 }
